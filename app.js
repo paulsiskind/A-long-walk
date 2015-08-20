@@ -80,7 +80,7 @@
       document.getElementById("middle").removeChild(tacoBtn);
      });
    }
-   if(userStatus.steps%5==0){
+   if(userStatus.steps>4 && userStatus.energy<85 && userStatus.tacos>=1){
     var eatBtn = document.createElement('button');
      eatBtn.id = 'eatTaco';
 
@@ -89,22 +89,49 @@
      document.getElementById("middle").appendChild(eatBtn);
 
      eatBtn.addEventListener('click', function(){
-      tacoCount = -Math.floor(Math.random() * (2 - 1) + 1);
+     eatBtn.setAttribute('disabled', 'true');
+    
+    setTimeout(function() {
+      eatBtn.removeAttribute('disabled');
+    }, 10000);
+      tacoCount = -1;
 
        userStatus.energy += Math.floor(Math.random() * (10 - 1) + 1);
 
       userStatus.tacos ? userStatus.tacos += tacoCount: userStatus.tacos = tacoCount;
       updateDom();
       var taco2Text = document.createElement('div');
-      taco2Text.innerHTML = "You turned  "+tacoCount+ " into poop";
+      taco2Text.innerHTML = "You turned tacos into poop!";
       document.getElementById("left").appendChild(taco2Text);
       document.getElementById("middle").removeChild(eatBtn);
 
-      userStatus.energy = Math.floor(Math.random() * (10 - 1) + 1);
+      // userStatus.energy = Math.floor(Math.random() * (10 - 1) + 1);
      });
    } 
-   if(userStatus.steps%3==0){
-    var drinkBtn = document.createElement('button');
+   // if(userStatus.steps%3==0){
+    // var drinkBtn = document.createElement('button');
+    //  drinkBtn.id = 'drink';
+
+    //  drinkBtn.innerHTML = "I am thirsty!";
+
+    //  document.getElementById("middle").appendChild(drinkBtn);
+
+    //  drinkBtn.addEventListener('click', function(){
+     //  cokeCount = -Math.floor(Math.random() * (5 - 1) + 1);
+
+     //   userStatus.energy += Math.floor(Math.random() * (10 - 1) + 1);
+
+     //  userStatus.cokes ? userStatus.cokes += cokeCount: userStatus.cokes = cokeCount;
+     //  updateDom();
+     //  var coke2Text = document.createElement('div');
+     //  coke2Text.innerHTML = "You turned  "+cokeCount+ " into poop";
+     //  document.getElementById("left").appendChild(coke2Text);
+     //  document.getElementById("middle").removeChild(drinkBtn);
+
+     //  userStatus.energy = Math.floor(Math.random() * (3 - 1) + 1);
+     // });
+       if(userStatus.steps>5 && userStatus.energy<85 && userStatus.cokes>=1){
+     var drinkBtn = document.createElement('button');
      drinkBtn.id = 'drink';
 
      drinkBtn.innerHTML = "I am thirsty!";
@@ -112,20 +139,27 @@
      document.getElementById("middle").appendChild(drinkBtn);
 
      drinkBtn.addEventListener('click', function(){
-      cokeCount = -Math.floor(Math.random() * (5 - 1) + 1);
+      drinkBtn.setAttribute('disabled', 'true');
+      setTimeout(function() {
+      drinkBtn.removeAttribute('disabled');
+    }, 10000); 
+    
+       cokeCount = -1;
 
        userStatus.energy += Math.floor(Math.random() * (10 - 1) + 1);
 
       userStatus.cokes ? userStatus.cokes += cokeCount: userStatus.cokes = cokeCount;
       updateDom();
       var coke2Text = document.createElement('div');
-      coke2Text.innerHTML = "You turned  "+cokeCount+ " into poop";
+      coke2Text.innerHTML = "You enjoyed a tasty beverage!";
       document.getElementById("left").appendChild(coke2Text);
       document.getElementById("middle").removeChild(drinkBtn);
 
-      userStatus.energy = Math.floor(Math.random() * (3 - 1) + 1);
-     });
+      // userStatus.energy = Math.floor(Math.random() * (3 - 1) + 1);
+    });
+
    } 
+
     updateDom();
   });
 
